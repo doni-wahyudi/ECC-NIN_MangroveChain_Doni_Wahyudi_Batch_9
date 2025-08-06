@@ -77,9 +77,9 @@ WITH node_relationships AS (
   JOIN
     blockchain_transactions bt ON bdc1.Conservation_ID = bt.Conservation_ID
   JOIN
-    blockchain_data_compliance bdc2 ON bt.Block_Hash = bdc2.Conservation_ID
-  WHERE
-    bdc1.Conservation_ID != bdc2.Conservation_ID
+    blockchain_data_compliance bdc2 ON bt.Conservation_ID = bdc2.Conservation_ID
+--  WHERE
+--    bdc1.Conservation_ID != bdc2.Conservation_ID
   GROUP BY
     bdc1.Conservation_ID, bdc2.Conservation_ID
 )
@@ -92,6 +92,7 @@ WHERE
 ORDER BY
   berat_hubungan DESC;
 
+select * from blockchain_data_compliance
 
 -- Query data node
 SELECT c.Conservation_ID, c.Location, bdc.Data_Type, bdc.Access_Level,
